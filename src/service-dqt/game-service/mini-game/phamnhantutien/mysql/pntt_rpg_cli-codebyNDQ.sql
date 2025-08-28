@@ -297,10 +297,10 @@ CREATE TABLE `codes` (
 -- Hiện tại chưa có codes nào, nhưng có thể thêm mẫu sau:
 -- INSERT INTO `codes` VALUES (
 --   1, 
---   'WELCOME2024', 
---   'Mã chào mừng năm mới 2024', 
---   'Chào mừng bạn đến với game Phạm Nhân Tu Tiên! Nhận ngay phần thưởng khởi đầu.',
---   'WELCOME2024',
+--   'WELCOMEPNTT', 
+--   'Mã chào mừng đến với game Phàm Nhân Tu Tiên!', 
+--   'Chào mừng bạn đến với game Phàm Nhân Tu Tiên! Nhận ngay phần thưởng khởi đầu.',
+--   'WELCOMEPNTT',
 --   '{"gold": 1000, "exp": 500, "items": []}',
 --   1000, 
 --   0, 
@@ -313,3 +313,4 @@ CREATE TABLE `codes` (
 -- );
 
 SET FOREIGN_KEY_CHECKS = 1;
+

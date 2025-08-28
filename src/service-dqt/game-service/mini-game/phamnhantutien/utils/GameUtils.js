@@ -1,29 +1,7 @@
-import fs from "fs/promises";
-import path from "path";
-import { JSON_DATA_PATH } from "../../../../../utils/io-json.js";
-
 /**
  * GameUtils.js
  * Các hàm tiện ích dùng chung trong game
  */
-
-const pathData = path.join(JSON_DATA_PATH, "phamnhantutien");
-
-/**
- * Đọc file JSON từ đường dẫn
- * @param {string} filename - Tên file cần đọc
- * @returns {Object|null} - Dữ liệu từ file hoặc null nếu có lỗi
- */
-export async function readJsonFile(filename) {
-  try {
-    const filePath = path.join(pathData, filename);
-    const data = await fs.readFile(filePath, "utf8");
-    return JSON.parse(data);
-  } catch (error) {
-    console.error(`Lỗi khi đọc file ${filename}:`, error);
-    return null;
-  }
-}
 
 /**
  * Tạo ID ngẫu nhiên

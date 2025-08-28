@@ -1,5 +1,4 @@
 import Big from "big.js";
-import JSONbig from "json-bigint";
 
 function sanitizeString(input) {
   if (!input) return "";
@@ -368,60 +367,6 @@ function capitalizeEachWord(string) {
     .join(" ");
 }
 
-function deepParseJSON(obj) {
-  if (typeof obj === "string") {
-    try {
-      return deepParseJSON(JSONbig.parse(obj));
-    } catch (e) {
-      return obj;
-    }
-  } else if (Array.isArray(obj)) {
-    return obj.map(deepParseJSON);
-  } else if (typeof obj === "object" && obj !== null) {
-    if (obj && typeof obj === "object" && obj.constructor && obj.constructor.name === "BigNumber") {
-      return obj.toString();
-    }
-    return Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, deepParseJSON(value)]));
-  }
-  return obj;
-}
-
-function deepStringifyJSON(obj, space = null) {
-  try {
-    const processObject = (value) => {
-      if (value === null || value === undefined) {
-        return value;
-      }
-      if (typeof value === "object" && value.constructor && value.constructor.name === "BigNumber") {
-        return value.toString();
-      }
-      if (typeof value === "bigint") {
-        return value.toString();
-      }
-      if (Array.isArray(value)) {
-        return value.map(processObject);
-      }
-      if (typeof value === "object") {
-        const result = {};
-        for (const [k, v] of Object.entries(value)) {
-          result[k] = processObject(v);
-        }
-        return result;
-      }
-      return value;
-    };
-    const processed = processObject(obj);
-    return JSONbig.stringify(processed, null, space);
-  } catch (error) {
-    console.error("Lỗi chuyển đổi object sang JSON:", error);
-    try {
-      return JSON.stringify(obj, null, space);
-    } catch (e) {
-      return String(obj);
-    }
-  }
-}
-
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -458,8 +403,6 @@ export {
   getContent,
   removeMention,
   capitalizeEachWord,
-  deepParseJSON,
-  deepStringifyJSON,
   randomIntFromInterval,
   randomIDTemp,
   maskPhoneNumber,

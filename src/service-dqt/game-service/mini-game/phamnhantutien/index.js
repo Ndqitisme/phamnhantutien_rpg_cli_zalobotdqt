@@ -23,7 +23,7 @@ export function getService(serviceName) {
  * Xử lý tin nhắn từ người chơi trong game Phẫm Nhân Tu Tiên
  * @param {Object} api - API đối tượng
  * @param {Object} message - Thông tin tin nhắn
- * @returns {boolean} Kết quả xử lý tin nhắn
+ * @returns {Promise<boolean>} Kết quả xử lý tin nhắn
  */
 export async function handleGamePhamNhanTuTienMessage(api, message) {
   /** @type {import('./services/GameService.js').GameService} */
